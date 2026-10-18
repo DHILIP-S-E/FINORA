@@ -1,12 +1,39 @@
 # Environment files and credentials
 .env
-.env.local
-.env.*.local
+.env.*
 *.env
+*.local
+*.local.*
+.envrc
 !.env.example
 !.env.*.example
-serviceAccount*.json
+!.env.sample
+!.env.*.sample
+!.env.template
+!.env.*.template
+
+# Local credentials and private keys
+secrets.json
+secret.json
+credentials.json
+*-credentials.json
+*serviceAccount*.json
+*service-account*.json
 *-adminsdk-*.json
+application_default_credentials.json
+*.secret
+*.secret.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform/
 
 # Python
 __pycache__/
@@ -35,6 +62,7 @@ pnpm-debug.log*
 
 # Firebase
 .firebase/
+.runtimeconfig.json
 firebase-debug.log*
 firestore-debug.log*
 ui-debug.log*
@@ -51,7 +79,4 @@ Thumbs.db
 apps/mobile/android/local.properties
 
 # Logs
-*.log
-.dart_tool/
-firebase-debug.log
 *.log
