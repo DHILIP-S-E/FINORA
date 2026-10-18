@@ -1,0 +1,16 @@
+﻿{
+  "firestore": { "rules": "firebase/firestore.rules", "indexes": "firebase/firestore.indexes.json" },
+  "storage": { "rules": "firebase/storage.rules" },
+  "functions": [
+    { "source": "services/functions", "codebase": "default", "predeploy": ["npm --prefix services/functions run build"] }
+  ],
+  "emulators": {
+    "auth": { "port": 9099 },
+    "firestore": { "port": 8085 },
+    "storage": { "port": 9199 },
+    "functions": { "port": 5001 },
+    "ui": { "enabled": true, "port": 4000 },
+    "singleProjectMode": true
+  }
+}
+

@@ -1,0 +1,13 @@
+rules_version = '2';
+
+// Uploaded financial documents are private. Uploads go through the API (type/size/magic-byte
+// validation, extraction records). The owner may read their own files; nobody else may touch them.
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /users/{uid}/documents/{allPaths=**} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+    match /{allPaths=**} { allow read, write: if false; }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./.venv/Scripts/python -)",
+      "Bash(./.venv/Scripts/python -c \"import ast,sys;ast.parse\\(open\\('app/services/alerts.py',encoding='utf-8'\\).read\\(\\)\\)\")",
+      "Bash(./.venv/Scripts/python -m pytest -q tests)",
+      "Bash(curl -s -i https://finora-api-510528501361.asia-south1.run.app/healthz)",
+      "Bash(curl -s -i https://finora-api-qfhqdb5rna-el.a.run.app/healthz)",
+      "Bash(python /c/Users/dpdhi/.claude/skills/synced/2276488d-da13-448a-9e4c-5401ee7e5b1e_dfd8f6f6-6009-4002-8047-7dcdb6802964/pptx/scripts/office/soffice.py --headless --convert-to pdf t.pptx)",
+      "Bash(pdftoppm -jpeg -r 40 t.pdf tp)",
+      "Read(//c/Program Files/Microsoft Office/root/Office16/**)",
+      "Bash(PYTHONPATH=. .venv/Scripts/python /c/tmp/deck/bench.py)",
+      "Bash(python -c ' *)",
+      "Bash(python -c \"import PIL;print\\('PIL',PIL.__version__\\)\")",
+      "Bash(python -c \"import edge_tts\")",
+      "Bash(powershell -c 'Add-Type -AssemblyName System.Speech; \\(New-Object System.Speech.Synthesis.SpeechSynthesizer\\).GetInstalledVoices\\(\\)|%{$_.VoiceInfo.Name}')",
+      "Bash(ffmpeg -hide_banner -filters)"
+    ]
+  }
+}

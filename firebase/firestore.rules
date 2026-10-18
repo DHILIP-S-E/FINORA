@@ -1,0 +1,28 @@
+rules_version = '2';
+
+// CASCADE Firestore rules.
+// Model: every document lives under users/{uid}/... . Clients may READ only their own subtree
+// (except server-only collections). ALL writes go through the backend API (the Admin SDK bypasses
+// rules) so validation, ownership checks, audit logging and financial-integrity rules live in one place.
+// NOTE: overlapping `match` blocks are OR-ed by Firestore, so server-only collections are excluded
+// inside the generic rule rather than denied in a second block.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+    function serverOnly(collection) { return collection in ['audit_events', 'idempotency']; }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+      allow write: if false;
+
+      match /{collection}/{docId} {
+        allow read: if isOwner(uid) && !serverOnly(collection);
+        allow write: if false;
+      }
+    }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}
